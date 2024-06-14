@@ -19,14 +19,11 @@ jobs:
           POSTGRES_DB: events_system_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
-
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - uses: actions/setup-ruby@v1
         with:
-          ruby-version: '3.3.1'
-      - run: gem install bundler
-      - run: bundle install
-      - run: cp config/database.yml.ci config/database.yml
+          ruby-version: '3.3'
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
       - run: bin/rails db:create db:schema:load
       - run: bin/rails test

@@ -1,0 +1,53 @@
+# .github/workflows/ci.yml
+name: CI
+
+on:
+  push:
+    branches: [ '**' ]
+  pull_request:
+    branches: [ main ]
+
+# FROM: https://revs.runtime-revolution.com/ruby-on-rails-ci-cd-with-github-actions-1e65adbd6181
+jobs:
+  ci_validation:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:alpine
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_DB: events_system_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      RAILS_ENV: test
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: password
+      DATABASE_URL: "postgres://postgres:password@localhost:5432/events_system_test"
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.3.1
+          bundler-cache: true
+          cache-version: 1
+
+      - name: Prepare Database
+        run: |
+          bin/rails db:create
+          bin/rails db:schema:load
+
+      - name: Precompile Assets
+        run: bin/rails assets:precompile
+
+      - name: Test
+        run: bundle exec rspec
+
+      - name: Lint
+        run: bundle exec rubocop

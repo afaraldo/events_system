@@ -7,23 +7,38 @@ on:
   pull_request:
     branches: [ main ]
 
+# FROM: https://revs.runtime-revolution.com/ruby-on-rails-ci-cd-with-github-actions-1e65adbd6181
 jobs:
-  test:
+  ci_validation:
     runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
 
     services:
       postgres:
-        image: postgres:14
-        ports: ['5432:5432']
+        image: postgres:alpine
+        ports:
+          - 5432:5432
         env:
           POSTGRES_DB: events_system_test
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-ruby@v1
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3'
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-      - run: bin/rails db:create db:schema:load
-      - run: bin/rails test
+          ruby-version: 3.3.1
+          bundler-cache: true
+          cache-version: 1
+
+      - name: Test
+        run: bundle exec rspec
+
+      - name: Lint
+        run: bundle exec rubocop

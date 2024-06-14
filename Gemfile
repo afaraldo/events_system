@@ -46,11 +46,14 @@ gem 'bootsnap', require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'bundler-audit'
   gem 'debug', platforms: %i[ mri windows ]
   gem 'dotenv-rails' # Load environment variables from .env into ENV in development
   gem 'factory_bot_rails' # https://github.com/thoughtbot/factory_bot_rails
   gem 'faker' # https://github.com/faker-ruby/faker
   gem 'rspec-rails', '~> 6.1.0' # https://github.com/rspec/rspec-rails
+  gem 'rubocop-rails'
+  gem 'ruby_audit'
   gem 'simplecov', require: false
 end
 

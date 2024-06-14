@@ -40,6 +40,11 @@ jobs:
           bundler-cache: true
           cache-version: 1
 
+      - name: Prepare Database
+        run: |
+          bin/rails db:create
+          bin/rails db:schema:load
+
       - name: Test
         run: bundle exec rspec
 

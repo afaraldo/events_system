@@ -1,0 +1,37 @@
+<div class="container mx-auto p-6 bg-white shadow-md rounded-lg">
+  <h1 class="text-2xl font-bold mb-5">Edit Registration</h1>
+
+    <% if @event_registration.errors.any? %>
+      <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+        <h2><%= pluralize(@event_registration.errors.count, "error") %> prohibited this registration from being saved:</h2>
+        <ul>
+          <% @event_registration.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="grid grid-cols-3 gap-4 mb-4">
+      <div>
+        <label class="block text-gray-700 font-bold mb-2">Attendee Name:</label>
+        <p class="text-gray-900"><%= @event_registration.attendee_name %></p>
+      </div>
+      <div>
+        <label class="block text-gray-700 font-bold mb-2">Attendee Email:</label>
+        <p class="text-gray-900"><%= @event_registration.attendee_email %></p>
+      </div>
+      <div>
+        <label class="block text-gray-700 font-bold mb-2">Status:</label>
+        <p class="text-gray-900"><%= @event_registration.status %></p>
+      </div>
+    </div>
+
+    <div class="mt-6">
+      <p class="text-gray-700 font-bold mb-2">Please select one of the following options:</p>
+      <div class="flex gap-4 mt-4">
+        <%= button_to 'Accepted', event_event_registration_path(@event_registration.event, @event_registration), data: { turbo: false }, params: { event_registration: { status: 'accepted' } }, method: :put, class: "bg-green-500 text-white font-bold py-2 px-4 rounded" %>
+        <%= button_to 'Declined', event_event_registration_path(@event_registration.event, @event_registration), data: { turbo: false }, params: { event_registration: { status: 'declined' } }, method: :put, class: "bg-red-500 text-white font-bold py-2 px-4 rounded" %>
+      </div>
+    </div>
+</div>

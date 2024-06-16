@@ -77,11 +77,15 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+gem "audited"
 gem 'devise', '~> 4.9'
+gem "good_job", "~> 3.29"
 gem 'grape', '~> 2.0'
 gem 'interactor-rails', '~> 2.2'
 gem 'pundit', '~> 2.3'
+gem 'ransack'
 gem 'rubocop', '~> 1.64'
 gem 'simple_form' # https://github.com/heartcombo/simple_form
 gem 'simple_form-tailwind' #  https://github.com/tarellel/simple_form-tailwind
 gem 'tailwindcss-rails', '~> 2.6'
+

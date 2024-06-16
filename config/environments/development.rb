@@ -40,7 +40,16 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.perform_caching = false
-
+  config.action_mailer.smtp_settings = {
+    port: ENV.fetch('SMTP_PORT'),
+    address: ENV.fetch('SMTP_SERVER'),
+    user_name: ENV.fetch('SMTP_LOGIN'),
+    password: ENV.fetch('SMTP_PASSWORD'),
+    domain: ENV.fetch('SMTP_DOMAIN'),
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # Print deprecation notices to the Rails logger.
@@ -75,4 +84,5 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+  config.assets.debug = true
 end

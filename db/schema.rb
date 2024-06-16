@@ -10,9 +10,61 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_14_111717) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_16_193921) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attendees", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_attendees_on_email", unique: true
+  end
+
+  create_table "audits", force: :cascade do |t|
+    t.integer "auditable_id"
+    t.string "auditable_type"
+    t.integer "associated_id"
+    t.string "associated_type"
+    t.integer "user_id"
+    t.string "user_type"
+    t.string "username"
+    t.string "action"
+    t.text "audited_changes"
+    t.integer "version", default: 0
+    t.string "comment"
+    t.string "remote_address"
+    t.string "request_uuid"
+    t.datetime "created_at"
+    t.index ["associated_type", "associated_id"], name: "associated_index"
+    t.index ["auditable_type", "auditable_id", "version"], name: "auditable_index"
+    t.index ["created_at"], name: "index_audits_on_created_at"
+    t.index ["request_uuid"], name: "index_audits_on_request_uuid"
+    t.index ["user_id", "user_type"], name: "user_index"
+  end
+
+  create_table "event_attendees", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "attendee_id", null: false
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attendee_id"], name: "index_event_attendees_on_attendee_id"
+    t.index ["event_id"], name: "index_event_attendees_on_event_id"
+  end
+
+  create_table "event_registrations", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "attendee_id", null: false
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["attendee_id", "event_id"], name: "index_event_registrations_on_attendee_id_and_event_id", unique: true
+    t.index ["attendee_id"], name: "index_event_registrations_on_attendee_id"
+    t.index ["event_id"], name: "index_event_registrations_on_event_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "name"
@@ -40,5 +92,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_14_111717) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "event_attendees", "attendees"
+  add_foreign_key "event_attendees", "events"
+  add_foreign_key "event_registrations", "attendees"
+  add_foreign_key "event_registrations", "events"
   add_foreign_key "events", "users"
 end

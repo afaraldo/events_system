@@ -1,0 +1,12 @@
+<%= simple_form_for([@event, @attendee]) do |f| %>
+  <div class="mb-4">
+    <%= f.input :name, input_html: { class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" }, placeholder: "Name" %>
+  </div>
+  <div class="mb-4">
+    <%= f.input :email, input_html: { class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" }, placeholder: "Email" %>
+  </div>
+  <div class="mt-4">
+    <%= f.submit class: "bg-blue-500 text-white font-bold py-2 px-4 rounded" %>
+    <%= link_to 'Back', event_path(@event), class: "ml-2 bg-gray-500 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+<% end %>

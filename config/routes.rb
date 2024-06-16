@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :events
+  resources :events do
+    resources :event_registrations, only: [:new, :create, :show, :edit, :update, :destroy]
+  end
+  resources :attendees, only: [:index, :show, :edit, :update, :destroy]
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

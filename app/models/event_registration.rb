@@ -35,4 +35,9 @@ class EventRegistration < ApplicationRecord
   validates :attendee, uniqueness: { scope: :event } # Also added a unique index to the database
 
   after_update_commit -> { broadcast_replace_to 'event_registrations' }
+
+  # after_create_commit -> { broadcast_update_to "counters_event_#{event.id}", target: "counters_event_#{event.id}" }
+  # after_update_commit -> { broadcast_update_to "counters_event_#{event.id}", target: "counters_event_#{event.id}" }
+  # after_destroy_commit -> { broadcast_update_to "counters_event_#{event.id}", target: "counters_event_#{event.id}" }
+
 end

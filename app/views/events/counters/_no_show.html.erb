@@ -1,0 +1,13 @@
+<!-- Card -->
+<div class="flex items-center p-4 bg-white rounded-lg shadow-xs">
+  <div class="p-3 mr-4 text-gray-500 bg-gray-100 rounded-full">
+    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M5 3a2 2 0 00-2 2v4a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H5zm0 4h10V5H5v2zm-1 4a2 2 0 012-2h6a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4z" clip-rule="evenodd"></path>
+    </svg>
+  </div>
+  <div>
+    <p class="mb-2 text-sm font-medium text-gray-600">No Show</p>
+    <p class="text-lg font-semibold text-gray-700"><%= event.event_registrations.where(status: 'no_show').count %></p>
+  </div>
+</div>
+

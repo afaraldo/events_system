@@ -14,4 +14,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "events#index"
+
+  authenticate :user, ->(user) { user.role_admin? } do
+    mount GoodJob::Engine => 'good_job'
+  end
 end

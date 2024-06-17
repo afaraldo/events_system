@@ -1,5 +1,5 @@
 <%= turbo_stream.remove @event_registration %>
 
-<%#= turbo_stream.replace dom_id(@event, :counters) do %>
-  <%#= render 'events/counters', event: @event %>
-<%# end %>
+<%= turbo_stream.replace dom_id(@event, :counters) do %>
+  <%= render 'events/counters', event: @event %>
+<% end %>

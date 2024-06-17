@@ -22,11 +22,11 @@ end
 
 
 events = [
-  { name: 'Event 1', description: 'Event 1 description', organizer: 'Event 1 organizer', status: 'Event 1 status', user: user, start_time: Time.now, end_time: Time.now + 1.hour },
-  { name: 'Event 2', description: 'Event 2 description', organizer: 'Event 2 organizer', status: 'Event 2 status', user: user, start_time: Time.now, end_time: Time.now + 1.hour },
-  { name: 'Event 3', description: 'Event 3 description', organizer: 'Event 3 organizer', status: 'Event 3 status', user: user, start_time: Time.now, end_time: Time.now + 1.hour },
-  { name: 'Event 4', description: 'Event 4 description', organizer: 'Event 4 organizer', status: 'Event 4 status', user: user, start_time: Time.now, end_time: Time.now + 1.hour },
-  { name: 'Event 5', description: 'Event 5 description', organizer: 'Event 5 organizer', status: 'Event 5 status', user: user, start_time: Time.now, end_time: Time.now + 1.hour },
+  { name: 'Event 1', description: 'Event 1 description', organizer: 'Event 1 organizer', status: :planned, user: user, start_time: Time.now, end_time: Time.now + 1.hour },
+  { name: 'Event 2', description: 'Event 2 description', organizer: 'Event 2 organizer', status: :planned, user: user, start_time: Time.now, end_time: Time.now + 1.hour },
+  { name: 'Event 3', description: 'Event 3 description', organizer: 'Event 3 organizer', status: :planned, user: user, start_time: Time.now, end_time: Time.now + 1.hour },
+  { name: 'Event 4', description: 'Event 4 description', organizer: 'Event 4 organizer', status: :planned, user: user, start_time: Time.now, end_time: Time.now + 1.hour },
+  { name: 'Event 5', description: 'Event 5 description', organizer: 'Event 5 organizer', status: :planned, user: user, start_time: Time.now, end_time: Time.now + 1.hour },
 ]
 
 # Create a event

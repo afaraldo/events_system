@@ -22,6 +22,7 @@ class EventRegistrationsController < ApplicationController
 
     respond_to do |format|
       if @event_registration.save
+        EventRegistrationMailer.with(event_registration: @event_registration).invitation_email.deliver_later
         format.html { redirect_to @event, notice: 'Attendee was successfully created and invited.' }
         format.json { render :show, status: :created, location: [@event, @event_registration] }
         format.turbo_stream

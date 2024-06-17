@@ -4,11 +4,16 @@ class EventsController < ApplicationController
   after_action :verify_policy_scoped, only: :index
 
   def index
-    @events = policy_scope(Event)
+    @search = policy_scope(Event).ransack(params[:q])
+    @events = @search.result(distinct: true)
   end
 
   def show
     authorize @event
+
+    @event = Event.find(params[:id])
+    @search = @event.event_registrations.ransack(params[:q])
+    @event_registrations = @search.result(distinct: true)
   end
 
   def new

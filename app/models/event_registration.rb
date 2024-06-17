@@ -40,4 +40,11 @@ class EventRegistration < ApplicationRecord
   # after_update_commit -> { broadcast_update_to "counters_event_#{event.id}", target: "counters_event_#{event.id}" }
   # after_destroy_commit -> { broadcast_update_to "counters_event_#{event.id}", target: "counters_event_#{event.id}" }
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[attendee_id created_at event_id id id_value status updated_at]
+  end
+
+  def self.ransackable_associations(_auth_object = nil)
+    %w[attendee audits event]
+  end
 end

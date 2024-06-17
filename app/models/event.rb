@@ -32,4 +32,7 @@ class Event < ApplicationRecord
   validates_comparison_of :start_time, greater_than: Time.zone.today
   validates_comparison_of :end_time, greater_than: :start_time, other_than: Time.zone.today
 
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[created_at description end_time id id_value name organizer start_time status updated_at user_id]
+  end
 end

@@ -2,10 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'attendees/show', type: :view do
   before(:each) do
-    assign(:attendee, Attendee.create!(
-                        name: 'Name',
-                        email: 'Email'
-                      ))
+    assign(:attendee, create(:attendee))
   end
 
   it 'renders attributes in <p>' do

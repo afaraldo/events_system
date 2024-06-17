@@ -73,16 +73,16 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
   config.action_mailer.smtp_settings = {
-    port: ENV.fetch('SMTP_PORT'),
-    address: ENV.fetch('SMTP_SERVER'),
-    user_name: ENV.fetch('SMTP_LOGIN'),
-    password: ENV.fetch('SMTP_PASSWORD'),
-    domain: ENV.fetch('SMTP_DOMAIN'),
+    port: ENV.fetch('SMTP_PORT', ''),
+    address: ENV.fetch('SMTP_SERVER', ''),
+    user_name: ENV.fetch('SMTP_LOGIN', ''),
+    password: ENV.fetch('SMTP_PASSWORD', ''),
+    domain: ENV.fetch('SMTP_DOMAIN', ''),
     authentication: :plain,
     enable_starttls_auto: true
   }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: ENV.fetch('APPLICATION_HOST') }
+  config.action_mailer.default_url_options = { host: ENV.fetch('APPLICATION_HOST', '') }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

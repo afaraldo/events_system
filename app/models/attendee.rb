@@ -17,5 +17,9 @@ class Attendee < ApplicationRecord
   has_many :event_registrations, dependent: :destroy
   has_many :events, through: :event_registrations
 
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  def self.ransackable_attributes(_auth_object = nil)
+    %w[created_at email id id_value name status updated_at]
+  end
 end

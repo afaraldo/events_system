@@ -4,11 +4,16 @@ class EventsController < ApplicationController
   after_action :verify_policy_scoped, only: :index
 
   def index
-    @events = policy_scope(Event)
+    @search = policy_scope(Event).ransack(params[:q])
+    @events = @search.result(distinct: true)
   end
 
   def show
     authorize @event
+
+    @event = Event.find(params[:id])
+    @search = @event.event_registrations.ransack(params[:q])
+    @event_registrations = @search.result(distinct: true)
   end
 
   def new
@@ -28,7 +33,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to @event, notice: 'Event was successfully created.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -37,7 +42,7 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       redirect_to @event, notice: 'Event was successfully updated.'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

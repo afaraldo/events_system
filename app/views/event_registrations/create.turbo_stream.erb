@@ -1,2 +1,6 @@
 <%= turbo_stream.append "event_registrations", partial: "event_registrations/event_registration", locals: { event: @event_registration.event, event_registration: @event_registration } %>
 <%= turbo_stream.update EventRegistration.new, "" %>
+
+<%#= turbo_stream.replace dom_id(@event, :counters) do %>
+  <%#= render 'events/counters', event: @event %>
+<%# end %>

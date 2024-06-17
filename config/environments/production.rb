@@ -105,4 +105,7 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+  config.good_job.execution_mode = :async
+  config.good_job.poll_interval = 30 # segundos
+  config.good_job.max_threads = 5
 end

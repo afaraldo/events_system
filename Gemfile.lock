@@ -444,7 +444,7 @@ DEPENDENCIES
   ransack
   redis (>= 4.0.1)
   rspec-rails (~> 6.1.0)
-  rubocop (~> 1.64)
+  rubocop
   rubocop-rails
   ruby_audit
   selenium-webdriver

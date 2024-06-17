@@ -2,10 +2,14 @@ class EventRegistrationsController < ApplicationController
   before_action :set_event
   before_action :set_event_registration, only: %i[show edit update destroy]
 
+  def show; end
+
   def new
     @event_registration = @event.event_registrations.build
     @event_registration.build_attendee
   end
+
+  def edit; end
 
   def create
     attendee = Attendee.find_by(email: event_registration_params.dig('attendee_attributes', 'email'))
@@ -27,10 +31,6 @@ class EventRegistrationsController < ApplicationController
       end
     end
   end
-
-  def edit; end
-
-  def show; end
 
   def update
     respond_to do |format|

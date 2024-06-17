@@ -14,9 +14,8 @@
 #  index_attendees_on_email  (email) UNIQUE
 #
 class Attendee < ApplicationRecord
-
-  has_many :event_registrations
-  has_many :attendees, through: :event_registrations
+  has_many :event_registrations, dependent: :destroy
+  has_many :events, through: :event_registrations
 
   validates :email, presence: true, uniqueness: true
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 ruby '3.3.1'
@@ -36,7 +38,7 @@ gem 'redis', '>= 4.0.1'
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[ windows jruby ]
+gem 'tzinfo-data', platforms: %i[windows jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
@@ -46,13 +48,15 @@ gem 'bootsnap', require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
+  gem 'brakeman' # https://github.com/presidentbeef/brakeman
   gem 'bundler-audit'
-  gem 'debug', platforms: %i[ mri windows ]
+  gem 'debug', platforms: %i[mri windows]
   gem 'dotenv-rails' # Load environment variables from .env into ENV in development
   gem 'factory_bot_rails' # https://github.com/thoughtbot/factory_bot_rails
   gem 'faker' # https://github.com/faker-ruby/faker
   gem 'rspec-rails', '~> 6.1.0' # https://github.com/rspec/rspec-rails
-  gem 'rubocop-rails'
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
   gem 'ruby_audit'
   gem 'simplecov', require: false
 end
@@ -60,7 +64,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'annotate' # https://github.com/ctran/annotate_models
-  gem 'brakeman' # https://github.com/presidentbeef/brakeman
+
   gem 'bullet' # https://github.com/flyerhzm/bullet
   gem 'web-console'
 
@@ -77,15 +81,13 @@ group :test do
   gem 'selenium-webdriver'
 end
 
-gem "audited"
+gem 'audited'
 gem 'devise', '~> 4.9'
-gem "good_job", "~> 3.29"
+gem 'good_job', '~> 3.29'
 gem 'grape', '~> 2.0'
 gem 'interactor-rails', '~> 2.2'
 gem 'pundit', '~> 2.3'
 gem 'ransack'
-gem 'rubocop', '~> 1.64'
 gem 'simple_form' # https://github.com/heartcombo/simple_form
 gem 'simple_form-tailwind' #  https://github.com/tarellel/simple_form-tailwind
 gem 'tailwindcss-rails', '~> 2.6'
-

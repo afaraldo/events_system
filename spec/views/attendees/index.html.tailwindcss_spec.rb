@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "attendees/index", type: :view do
+RSpec.describe 'attendees/index', type: :view do
   before(:each) do
     assign(:attendees, [
              create(:attendee),
@@ -8,7 +8,7 @@ RSpec.describe "attendees/index", type: :view do
            ])
   end
 
-  it "renders a list of attendees" do
-    skip("Add assertions for attendees/index.html.erb")
+  it 'renders a list of attendees' do
+    skip('Add assertions for attendees/index.html.erb')
   end
 end

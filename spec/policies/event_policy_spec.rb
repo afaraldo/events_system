@@ -5,7 +5,7 @@ RSpec.describe EventPolicy, type: :policy do
 
   let(:user) { create(:user) }
   let(:admin) { create(:user, :admin) }
-  let(:event) { create(:event, user: user) }
+  let(:event) { create(:event, user:) }
 
   permissions :index? do
     it 'allows access to admins' do

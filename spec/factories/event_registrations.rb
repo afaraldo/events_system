@@ -24,6 +24,6 @@ FactoryBot.define do
   factory :event_registration do
     event { nil }
     attendee { nil }
-    status { "MyString" }
+    status { 'MyString' }
   end
 end

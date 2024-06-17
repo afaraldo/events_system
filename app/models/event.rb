@@ -25,7 +25,7 @@ class Event < ApplicationRecord
   enum :status, { planned: 'Planned', announced: 'Announced', open: 'Open', closed: 'Closed', cancelled: 'Cancelled' }, default: :planned
 
   belongs_to :user
-  has_many :event_registrations
+  has_many :event_registrations, dependent: :destroy
   has_many :attendees, through: :event_registrations
 
   validates :name, :description, :start_time, :end_time, :status, presence: true

@@ -18,7 +18,7 @@ class AttendeesController < ApplicationController
 
     respond_to do |format|
       if @attendee.save
-        format.html { redirect_to attendee_path(@attendee), notice: "Attendee was successfully created." }
+        format.html { redirect_to attendee_path(@attendee), notice: 'Attendee was successfully created.' }
         format.json { render :show, status: :created, location: [@attendee, @attendee] }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -30,7 +30,7 @@ class AttendeesController < ApplicationController
   def update
     respond_to do |format|
       if @attendee.update(attendee_params)
-        format.html { redirect_to attendee_path(@attendee), notice: "Attendee was successfully updated." }
+        format.html { redirect_to attendee_path(@attendee), notice: 'Attendee was successfully updated.' }
         format.json { render :show, status: :ok, location: [@attendee, @attendee] }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -42,7 +42,7 @@ class AttendeesController < ApplicationController
   def destroy
     @attendee.destroy
     respond_to do |format|
-      format.html { redirect_to attendee_path(@attendee), notice: "Attendee was successfully destroyed." }
+      format.html { redirect_to attendee_path(@attendee), notice: 'Attendee was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

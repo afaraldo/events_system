@@ -34,6 +34,5 @@ class EventRegistration < ApplicationRecord
   validates :status, presence: true
   validates :attendee, uniqueness: { scope: :event } # Also added a unique index to the database
 
-  after_update_commit -> { broadcast_replace_to "event_registrations" }
-
+  after_update_commit -> { broadcast_replace_to 'event_registrations' }
 end

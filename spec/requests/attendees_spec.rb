@@ -12,17 +12,16 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/attendees", type: :request do
-  
+RSpec.describe '/attendees', type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Attendee. As you add validations to Attendee, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip("Add a hash of attributes valid for your model")
+    skip('Add a hash of attributes valid for your model')
   end
 
   let(:invalid_attributes) do
-    skip("Add a hash of attributes invalid for your model")
+    skip('Add a hash of attributes invalid for your model')
   end
 
   let(:user) { create(:user) }
@@ -31,81 +30,79 @@ RSpec.describe "/attendees", type: :request do
     sign_in user
   end
 
-  describe "GET /index" do
-    it "renders a successful response" do
+  describe 'GET /index' do
+    it 'renders a successful response' do
       Attendee.create! valid_attributes
       get attendees_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
+  describe 'GET /show' do
+    it 'renders a successful response' do
       attendee = Attendee.create! valid_attributes
       get attendee_url(attendee)
       expect(response).to be_successful
     end
   end
 
-  describe "GET /new" do
-    it "renders a successful response" do
+  describe 'GET /new' do
+    it 'renders a successful response' do
       get new_attendee_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /edit" do
-    it "renders a successful response" do
+  describe 'GET /edit' do
+    it 'renders a successful response' do
       attendee = Attendee.create! valid_attributes
       get edit_attendee_url(attendee)
       expect(response).to be_successful
     end
   end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new Attendee" do
+  describe 'POST /create' do
+    context 'with valid parameters' do
+      it 'creates a new Attendee' do
         expect do
           post attendees_url, params: { attendee: valid_attributes }
         end.to change(Attendee, :count).by(1)
       end
 
-      it "redirects to the created attendee" do
+      it 'redirects to the created attendee' do
         post attendees_url, params: { attendee: valid_attributes }
         expect(response).to redirect_to(attendee_url(Attendee.last))
       end
     end
 
-    context "with invalid parameters" do
-      it "does not create a new Attendee" do
+    context 'with invalid parameters' do
+      it 'does not create a new Attendee' do
         expect do
           post attendees_url, params: { attendee: invalid_attributes }
         end.to change(Attendee, :count).by(0)
       end
 
-    
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post attendees_url, params: { attendee: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
+  describe 'PATCH /update' do
+    context 'with valid parameters' do
       let(:new_attributes) do
-        skip("Add a hash of attributes valid for your model")
+        skip('Add a hash of attributes valid for your model')
       end
 
-      it "updates the requested attendee" do
+      it 'updates the requested attendee' do
         attendee = Attendee.create! valid_attributes
         patch attendee_url(attendee), params: { attendee: new_attributes }
         attendee.reload
-        skip("Add assertions for updated state")
+        skip('Add assertions for updated state')
       end
 
-      it "redirects to the attendee" do
+      it 'redirects to the attendee' do
         attendee = Attendee.create! valid_attributes
         patch attendee_url(attendee), params: { attendee: new_attributes }
         attendee.reload
@@ -113,26 +110,24 @@ RSpec.describe "/attendees", type: :request do
       end
     end
 
-    context "with invalid parameters" do
-    
+    context 'with invalid parameters' do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         attendee = Attendee.create! valid_attributes
         patch attendee_url(attendee), params: { attendee: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
     end
   end
 
-  describe "DELETE /destroy" do
-    it "destroys the requested attendee" do
+  describe 'DELETE /destroy' do
+    it 'destroys the requested attendee' do
       attendee = Attendee.create! valid_attributes
       expect do
         delete attendee_url(attendee)
       end.to change(Attendee, :count).by(-1)
     end
 
-    it "redirects to the attendees list" do
+    it 'redirects to the attendees list' do
       attendee = Attendee.create! valid_attributes
       delete attendee_url(attendee)
       expect(response).to redirect_to(attendees_url)

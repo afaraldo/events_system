@@ -26,9 +26,9 @@
 # spec/factories/events.rb
 FactoryBot.define do
   factory :event do
-    name { "Event Name" }
-    description { "Event Description" }
-    organizer { "Organizer Name" }
+    name { 'Event Name' }
+    description { Faker::Lorem.paragraph }
+    organizer { Faker::Name.name }
     start_time { Faker::Time.forward(days: 23, period: :morning) }
     end_time { start_time + 2.hours }
     status { Event.statuses.keys.sample }
@@ -55,4 +55,3 @@ FactoryBot.define do
     end
   end
 end
-

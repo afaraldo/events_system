@@ -1,4 +1,5 @@
 module.exports = {
+
   content: [
     './node_modules/flowbite/**/*.js',
     './public/*.html',
@@ -26,6 +27,5 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/container-queries'),
-    require('flowbite/plugin')
   ]
 }

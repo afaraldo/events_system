@@ -2,11 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "attendees/new", type: :view do
   before(:each) do
-    assign(:attendee, Attendee.new(
-      name: "MyString",
-      email: "MyString",
-      event: nil
-    ))
+    assign(:attendee, build(:attendee))
   end
 
   it "renders new attendee form" do
@@ -18,7 +14,6 @@ RSpec.describe "attendees/new", type: :view do
 
       assert_select "input[name=?]", "attendee[email]"
 
-      assert_select "input[name=?]", "attendee[event_id]"
     end
   end
 end

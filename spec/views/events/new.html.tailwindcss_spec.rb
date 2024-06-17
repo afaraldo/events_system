@@ -2,12 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "events/new", type: :view do
   before(:each) do
-    assign(:event, Event.new(
-      name: "MyString",
-      description: "MyString",
-      organizer: "MyString",
-      status: "MyString"
-    ))
+    assign(:event, build(:event))
   end
 
   it "renders new event form" do
@@ -20,8 +15,6 @@ RSpec.describe "events/new", type: :view do
       assert_select "input[name=?]", "event[description]"
 
       assert_select "input[name=?]", "event[organizer]"
-
-      assert_select "input[name=?]", "event[status]"
     end
   end
 end

@@ -17,13 +17,19 @@ RSpec.describe "/attendees", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Attendee. As you add validations to Attendee, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
+  let(:valid_attributes) do
     skip("Add a hash of attributes valid for your model")
-  }
+  end
 
-  let(:invalid_attributes) {
+  let(:invalid_attributes) do
     skip("Add a hash of attributes invalid for your model")
-  }
+  end
+
+  let(:user) { create(:user) }
+
+  before do
+    sign_in user
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -59,9 +65,9 @@ RSpec.describe "/attendees", type: :request do
   describe "POST /create" do
     context "with valid parameters" do
       it "creates a new Attendee" do
-        expect {
+        expect do
           post attendees_url, params: { attendee: valid_attributes }
-        }.to change(Attendee, :count).by(1)
+        end.to change(Attendee, :count).by(1)
       end
 
       it "redirects to the created attendee" do
@@ -72,9 +78,9 @@ RSpec.describe "/attendees", type: :request do
 
     context "with invalid parameters" do
       it "does not create a new Attendee" do
-        expect {
+        expect do
           post attendees_url, params: { attendee: invalid_attributes }
-        }.to change(Attendee, :count).by(0)
+        end.to change(Attendee, :count).by(0)
       end
 
     
@@ -88,9 +94,9 @@ RSpec.describe "/attendees", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) {
+      let(:new_attributes) do
         skip("Add a hash of attributes valid for your model")
-      }
+      end
 
       it "updates the requested attendee" do
         attendee = Attendee.create! valid_attributes
@@ -121,9 +127,9 @@ RSpec.describe "/attendees", type: :request do
   describe "DELETE /destroy" do
     it "destroys the requested attendee" do
       attendee = Attendee.create! valid_attributes
-      expect {
+      expect do
         delete attendee_url(attendee)
-      }.to change(Attendee, :count).by(-1)
+      end.to change(Attendee, :count).by(-1)
     end
 
     it "redirects to the attendees list" do

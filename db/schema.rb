@@ -45,16 +45,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_16_193921) do
     t.index ["user_id", "user_type"], name: "user_index"
   end
 
-  create_table "event_attendees", force: :cascade do |t|
-    t.bigint "event_id", null: false
-    t.bigint "attendee_id", null: false
-    t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["attendee_id"], name: "index_event_attendees_on_attendee_id"
-    t.index ["event_id"], name: "index_event_attendees_on_event_id"
-  end
-
   create_table "event_registrations", force: :cascade do |t|
     t.bigint "event_id", null: false
     t.bigint "attendee_id", null: false
@@ -92,8 +82,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_16_193921) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "event_attendees", "attendees"
-  add_foreign_key "event_attendees", "events"
   add_foreign_key "event_registrations", "attendees"
   add_foreign_key "event_registrations", "events"
   add_foreign_key "events", "users"

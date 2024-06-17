@@ -15,8 +15,7 @@
 #
 FactoryBot.define do
   factory :attendee do
-    name { "MyString" }
-    email { "MyString" }
-    event { nil }
+    name { Faker::Name.name }
+    email { Faker::Internet.email }
   end
 end

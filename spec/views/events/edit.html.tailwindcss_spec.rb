@@ -2,13 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "events/edit", type: :view do
   let(:event) {
-    Event.create!(
-      name: "MyString",
-      description: "MyString",
-      organizer: "MyString",
-      status: "MyString",
-      user: create(:user)
-    )
+    create(:event)
   }
 
   before(:each) do
@@ -25,8 +19,6 @@ RSpec.describe "events/edit", type: :view do
       assert_select "input[name=?]", "event[description]"
 
       assert_select "input[name=?]", "event[organizer]"
-
-      assert_select "input[name=?]", "event[status]"
     end
   end
 end

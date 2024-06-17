@@ -5,8 +5,7 @@ RSpec.describe EventPolicy, type: :policy do
 
   let(:user) { create(:user) }
   let(:admin) { create(:user, :admin) }
-  let(:event) { create(:event, user:) }
-
+  let(:event) { create(:event, user: user) }
 
   permissions :index? do
     it 'allows access to admins' do
@@ -28,7 +27,7 @@ RSpec.describe EventPolicy, type: :policy do
     end
 
     it 'denies access to other users' do
-      other_user = User.create(email: 'other@example.com', password: 'password', role: :user)
+      other_user = create(:user, email: 'other@example.com')
       expect(subject).not_to permit(other_user, event)
     end
   end
@@ -53,7 +52,7 @@ RSpec.describe EventPolicy, type: :policy do
     end
 
     it 'denies access to other users' do
-      other_user = User.create(email: 'other@example.com', password: 'password', role: :user)
+      other_user = create(:user, email: 'other@example.com')
       expect(subject).not_to permit(other_user, event)
     end
   end
@@ -68,7 +67,7 @@ RSpec.describe EventPolicy, type: :policy do
     end
 
     it 'denies access to other users' do
-      other_user = User.create(email: 'other@example.com', password: 'password', role: :user)
+      other_user = create(:user, email: 'other@example.com')
       expect(subject).not_to permit(other_user, event)
     end
   end

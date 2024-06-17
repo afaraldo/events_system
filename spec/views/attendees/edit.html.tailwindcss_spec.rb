@@ -1,13 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "attendees/edit", type: :view do
-  let(:attendee) {
+  let(:attendee) do
     Attendee.create!(
       name: "MyString",
-      email: "MyString",
-      event: nil
+      email: "MyString"
     )
-  }
+  end
 
   before(:each) do
     assign(:attendee, attendee)
@@ -21,8 +20,6 @@ RSpec.describe "attendees/edit", type: :view do
       assert_select "input[name=?]", "attendee[name]"
 
       assert_select "input[name=?]", "attendee[email]"
-
-      assert_select "input[name=?]", "attendee[event_id]"
     end
   end
 end

@@ -51,3 +51,6 @@ jobs:
 
       - name: Lint
         run: bundle exec rubocop
+
+      - name: Brakeman
+        run: bundle exec brakeman

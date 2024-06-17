@@ -4,8 +4,7 @@ RSpec.describe "attendees/show", type: :view do
   before(:each) do
     assign(:attendee, Attendee.create!(
       name: "Name",
-      email: "Email",
-      event: nil
+      email: "Email"
     ))
   end
 

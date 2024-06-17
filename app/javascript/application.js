@@ -3,7 +3,8 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import 'flowbite';
 import 'flowbite-datepicker';
-import 'flowbite/dist/datepicker.turbo.js';
-import { Turbo } from "@hotwired/turbo-rails"
+import "@fortawesome/fontawesome-free";
+
+// import 'flowbite/dist/datepicker.turbo.js';
 Turbo.start()
 

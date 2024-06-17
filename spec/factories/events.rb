@@ -23,14 +23,35 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
+# spec/factories/events.rb
 FactoryBot.define do
   factory :event do
-    sequence(:name) { |n| "Sample Event #{n}" }
-    description { 'Event Description' }
-    start_time { DateTime.now }
-    end_time { DateTime.now + 1.hour }
-    organizer { 'Organizer Name' }
-    status { 'Upcoming' }
-    association :user
+    name { 'Event Name' }
+    description { Faker::Lorem.paragraph }
+    organizer { Faker::Name.name }
+    start_time { Faker::Time.forward(days: 23, period: :morning) }
+    end_time { start_time + 2.hours }
+    status { Event.statuses.keys.sample }
+    user
+
+    trait :planned do
+      status { 'planned' }
+    end
+
+    trait :announced do
+      status { 'announced' }
+    end
+
+    trait :open do
+      status { 'open' }
+    end
+
+    trait :closed do
+      status { 'closed' }
+    end
+
+    trait :cancelled do
+      status { 'cancelled' }
+    end
   end
 end

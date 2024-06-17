@@ -1,0 +1,50 @@
+<div class="container mx-auto p-6 bg-white shadow-md rounded-lg">
+  <h1 class="text-2xl font-bold mb-5">Registration Details</h1>
+
+  <div class="mb-4">
+    <label class="block text-gray-700 font-bold mb-2">Attendee Name:</label>
+    <p class="text-gray-900"><%= @event_registration.attendee_name %></p>
+  </div>
+
+  <div class="mb-4">
+    <label class="block text-gray-700 font-bold mb-2">Attendee Email:</label>
+    <p class="text-gray-900"><%= @event_registration.attendee_email %></p>
+  </div>
+
+  <div class="mb-4">
+    <label class="block text-gray-700 font-bold mb-2">Status:</label>
+    <p class="text-gray-900"><%= @event_registration.status %></p>
+  </div>
+
+  <% if @event_registration.audits.any? { |audit| audit.audited_changes.key?('status') } %>
+    <div class="mt-8">
+      <h2 class="text-xl font-bold mb-4">History</h2>
+      <table class="min-w-full bg-white divide-y divide-gray-200 border-2 border-gray-200">
+        <thead>
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Changed At</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
+          <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Changes</th>
+        </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+        <% @event_registration.audits.each do |audit| %>
+          <% if audit.audited_changes.key?('status') %>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap"><%= audit.created_at.strftime('%B %d, %Y %H:%M') %></td>
+              <td class="px-6 py-4 whitespace-nowrap"><%= audit.user.try(:email) || 'System' %></td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <strong>Status:</strong> <%= audit.audited_changes['status'] %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+
+  <div class="mt-8">
+    <%= link_to 'Back to Event', event_path(@event_registration.event), class: 'inline-block bg-gray-500 text-white font-bold py-2 px-4 rounded' %>
+  </div>
+</div>

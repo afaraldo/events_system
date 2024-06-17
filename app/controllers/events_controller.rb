@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :set_event, only: %i[show edit update destroy]
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
 
@@ -16,6 +16,10 @@ class EventsController < ApplicationController
     authorize @event
   end
 
+  def edit
+    authorize @event
+  end
+
   def create
     @event = Event.new(event_params)
     @event.user = current_user
@@ -26,10 +30,6 @@ class EventsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def edit
-    authorize @event
   end
 
   def update
@@ -48,13 +48,14 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def event_params
-      params.require(:event).permit(:name, :description, :start_time, :end_time, :organizer, :status)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def event_params
+    params.require(:event).permit(:name, :description, :start_time, :end_time, :organizer, :status)
+  end
 end

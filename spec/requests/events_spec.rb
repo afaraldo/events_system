@@ -82,12 +82,10 @@ RSpec.describe '/events', type: :request do
         end.to change(Event, :count).by(0)
       end
 
-    
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post events_url, params: { event: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
     end
   end
 
@@ -113,13 +111,11 @@ RSpec.describe '/events', type: :request do
     end
 
     context 'with invalid parameters' do
-    
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         event = Event.create! valid_attributes
         patch event_url(event), params: { event: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
     end
   end
 

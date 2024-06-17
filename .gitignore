@@ -46,3 +46,4 @@
 
 # Ignore .env files
 .env
+rubocop.html

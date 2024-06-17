@@ -5,17 +5,41 @@
 
   <% content_for :title, "Events" %>
 
-  <div class="flex justify-between items-center">
+  <div class="flex justify-between items-center mb-5">
     <h1 class="font-bold text-4xl">Events</h1>
     <%= link_to "New event", new_event_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
   <div id="events" class="min-w-full">
-    <% @events.each do |event| %>
-      <%= render event %>
-      <p>
-        <%= link_to "Show this event", event, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      </p>
-    <% end %>
+    <table class="w-full table-auto border-2 border-gray">
+      <thead>
+      <tr class="bg-gray-200 text-left">
+        <th class="py-2 px-4">Name</th>
+        <th class="py-2 px-4">Description</th>
+        <th class="py-2 px-4">Organizer</th>
+        <th class="py-2 px-4">Start Time</th>
+        <th class="py-2 px-4">End Time</th>
+        <th class="py-2 px-4">Status</th>
+        <th class="py-2 px-4">Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @events.each do |event| %>
+        <tr class="bg-white border-b">
+          <td class="py-2 px-4"><%= event.name %></td>
+          <td class="py-2 px-4"><%= event.description %></td>
+          <td class="py-2 px-4"><%= event.organizer %></td>
+          <td class="py-2 px-4"><%= event.start_time.strftime('%B %d, %Y %H:%M') %></td>
+          <td class="py-2 px-4"><%= event.end_time.strftime('%B %d, %Y %H:%M') %></td>
+          <td class="py-2 px-4"><%= event.status %></td>
+          <td class="flex justify-center py-2 px-4">
+            <%= link_to "Show", event, class: "rounded-lg py-2 px-3 bg-gray-100 inline-block font-medium" %>
+            <%= link_to "Edit", edit_event_path(event), class: "ml-2 rounded-lg py-2 px-3 bg-yellow-300 inline-block font-medium" %>
+            <%= button_to "Delete", event, method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "ml-2 rounded-lg py-2 px-3 bg-red-600 text-white inline-block font-medium" %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

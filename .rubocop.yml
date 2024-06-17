@@ -1,1 +1,32 @@
-inherit_from: .rubocop_todo.yml
+require:
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.3
+  Exclude:
+    - 'bin/*'
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'Gemfile.lock'
+    - 'log/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Rails/I18nLocaleTexts:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Layout/LineLength:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false

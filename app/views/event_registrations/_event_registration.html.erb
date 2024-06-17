@@ -1,0 +1,18 @@
+
+  <tr id="<%= dom_id(event_registration) %>" class="event_registration">
+    <td class="px-6 py-4 whitespace-nowrap"><%= event_registration.attendee_name %></td>
+    <td class="px-6 py-4 whitespace-nowrap"><%= event_registration.attendee_email %></td>
+    <td class="px-6 py-4 whitespace-nowrap"><%= event_registration.status %></td>
+    <td class="px-6 py-4 whitespace-nowrap flex items-center">
+      <%= button_to 'Delete', event_event_registration_path(event_registration.event, event_registration), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'rounded-lg py-1 px-3 bg-red-600 text-white font-medium' %>
+      <%= link_to event_event_registration_path(event_registration.event, event_registration),
+                  data: { turbo_frame: "_top" },
+                  class: 'ml-2 rounded-lg py-1 px-3 bg-blue-600 text-white font-medium flex items-center' do %>
+        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm3.707 6.707l-4 4a1 1 0 01-1.414 0l-2-2a1 1 0 111.414-1.414L9 10.586l3.293-3.293a1 1 0 011.414 1.414z"></path>
+        </svg>
+        View
+      <% end %>
+    </td>
+  </tr>
+

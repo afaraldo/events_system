@@ -47,3 +47,6 @@
 # Ignore .env files
 .env
 rubocop.html
+
+# Ignore coverage
+coverage

@@ -25,7 +25,7 @@ class EventRegistrationsController < ApplicationController
         EventRegistrationMailer.with(event_registration: @event_registration).invitation_email.deliver_later
         format.html { redirect_to @event, notice: 'Attendee was successfully created and invited.' }
         format.json { render :show, status: :created, location: [@event, @event_registration] }
-        format.turbo_stream
+        # format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @event_registration.errors, status: :unprocessable_entity }
@@ -50,7 +50,7 @@ class EventRegistrationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @event, notice: 'Attendee was successfully removed from the event.' }
       format.json { head :no_content }
-      format.turbo_stream
+      # format.turbo_stream
     end
   end
 

@@ -1,4 +1,4 @@
-<div id="<%= dom_id(@event, :counters) %>" class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
+<div id="<%= dom_id(event, :counters) %>" class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
   <%= render 'events/counters/total_invited', event: event %>
   <%= render 'events/counters/pending', event: event %>
   <%= render 'events/counters/accepted', event: event %>

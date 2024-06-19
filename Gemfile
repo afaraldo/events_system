@@ -66,8 +66,8 @@ group :development do
   gem 'annotate' # https://github.com/ctran/annotate_models
 
   gem 'bullet' # https://github.com/flyerhzm/bullet
+  gem 'letter_opener'
   gem 'web-console'
-
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -81,12 +81,16 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+gem 'active_model_serializers'
 gem 'audited'
 gem 'devise', '~> 4.9'
+gem 'devise-jwt'
 gem 'good_job', '~> 3.29'
 gem 'grape', '~> 2.0'
 gem 'interactor-rails', '~> 2.2'
+gem 'kaminari'
 gem 'pundit', '~> 2.3'
+gem 'rack-cors'
 gem 'ransack'
 gem 'simple_form' # https://github.com/heartcombo/simple_form
 gem 'simple_form-tailwind' #  https://github.com/tarellel/simple_form-tailwind

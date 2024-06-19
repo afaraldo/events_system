@@ -84,10 +84,13 @@ end
 gem 'active_model_serializers'
 gem 'audited'
 gem 'devise', '~> 4.9'
+gem 'devise-jwt'
 gem 'good_job', '~> 3.29'
 gem 'grape', '~> 2.0'
 gem 'interactor-rails', '~> 2.2'
+gem 'kaminari'
 gem 'pundit', '~> 2.3'
+gem 'rack-cors'
 gem 'ransack'
 gem 'simple_form' # https://github.com/heartcombo/simple_form
 gem 'simple_form-tailwind' #  https://github.com/tarellel/simple_form-tailwind

@@ -34,11 +34,13 @@ class EventRegistration < ApplicationRecord
   validates :status, presence: true
   validates :attendee, uniqueness: { scope: :event } # Also added a unique index to the database
 
+  after_create_commit -> { broadcast_append_to 'event_registrations' }
   after_update_commit -> { broadcast_replace_to 'event_registrations' }
+  after_destroy_commit -> { broadcast_remove_to 'event_registrations' }
 
-  # after_create_commit -> { broadcast_update_to "counters_event_#{event.id}", target: "counters_event_#{event.id}" }
-  # after_update_commit -> { broadcast_update_to "counters_event_#{event.id}", target: "counters_event_#{event.id}" }
-  # after_destroy_commit -> { broadcast_update_to "counters_event_#{event.id}", target: "counters_event_#{event.id}" }
+  after_create_commit -> { broadcast_replace_to "counters_event_#{event.id}", target: "counters_event_#{event.id}", partial: 'events/counters', locals: { event: } }
+  after_update_commit -> { broadcast_replace_to "counters_event_#{event.id}", target: "counters_event_#{event.id}", partial: 'events/counters', locals: { event: } }
+  after_destroy_commit -> { broadcast_replace_to "counters_event_#{event.id}", target: "counters_event_#{event.id}", partial: 'events/counters', locals: { event: } }
 
   def self.ransackable_attributes(_auth_object = nil)
     %w[attendee_id created_at event_id id id_value status updated_at]

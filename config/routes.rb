@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :events do
     resources :event_registrations, only: [:new, :create, :show, :edit, :update, :destroy]
-
   end
 
   resources :attendees
@@ -17,5 +16,11 @@ Rails.application.routes.draw do
 
   authenticate :user, ->(user) { user.role_admin? } do
     mount GoodJob::Engine => 'good_job'
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :events
+    end
   end
 end
